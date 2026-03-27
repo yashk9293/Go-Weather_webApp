@@ -2,6 +2,16 @@
 
 A sleek, full-stack weather application built with a **Go (Golang)** backend and a **Vanilla JavaScript** frontend. This app provides real-time weather data, local time for searched cities, and dynamically changes the background image based on the location using the Unsplash API.
 
+Live Demo : https://go-weather-webapp-2.onrender.com
+
+<img alt="Image" src="https://github.com/user-attachments/assets/9bc83195-d40c-4474-9231-4756a1055360" />
+
+<br/>
+
+---
+
+<img alt="Image" src="https://github.com/user-attachments/assets/c4cf1ff3-0cfa-4f5c-bce5-e194e60ff2b3" />
+
 ---
 
 ## 🚀 Features
