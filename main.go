@@ -12,9 +12,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-// This embeds your frontend files into the binary. 
-// It looks one level up from the backend folder.
-//go:embed ../index.html ../index.js ../style.css ../setdates.js ../images/*
+//go:embed index.html index.js style.css setdates.js images/*
 var content embed.FS
 
 var (
@@ -123,10 +121,7 @@ func main() {
 	dateAPIKey = os.Getenv("DATE_API_KEY")
 	unsplashAPIKey = os.Getenv("UNSPLASH_ACCESS_KEY")
 
-	// Setup the filesystem from embedded files
-	// Substrip the "../" prefix from the embedded path
-	public, _ := fs.Sub(content, "..")
-	fileServer := http.FileServer(http.FS(public))
+	fileServer := http.FileServer(http.FS(content))
 
 	// API Routes
 	http.HandleFunc("/weather", weatherHandler)
