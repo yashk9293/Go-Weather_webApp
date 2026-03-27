@@ -1,4 +1,4 @@
-const apiurl = "http://localhost:8080/date?city=";
+const apiurl = "/date?city=";
 
 const searchbox = document.querySelector(".search input")
 const searchbtn = document.querySelector(".search button")
