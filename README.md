@@ -39,12 +39,11 @@ Live Demo : https://go-weather-webapp-2.onrender.com
 ```
 Go-Weather-webapp/
 │
-├── backend/
-│   ├── main.go
-│   ├── go.mod
-│   ├── go.sum
-│   ├── .env (ignored)
-│   └── .gitignore
+├── main.go
+├── go.mod
+├── go.sum
+├── .env (ignored)
+├── .gitignore
 ├── index.html
 ├── index.js
 ├── setdates.js
