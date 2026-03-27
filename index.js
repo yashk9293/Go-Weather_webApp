@@ -1,4 +1,5 @@
-const apiUrl = "http://localhost:8080/weather?city=";
+const weatherApiUrl = "/weather?city=";
+const imageApiUrl = "/image?city=";
 
 const searchBox = document.querySelector(".search input")
 const searchBtn = document.querySelector(".search button")
@@ -6,34 +7,29 @@ const weatherIcon = document.querySelector(".weather-icon")
 
 async function checkWeather(city){
     try {
-        const response = await fetch(apiUrl + city);
+        const response = await fetch(weatherApiUrl + city);
+        if (!response.ok) throw new Error("Weather fetch failed");
         
-        var data = await response.json();
+        const data = await response.json();
 
         document.querySelector(".city").innerHTML = data.name;
         document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
         document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
         document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
 
-        if(data.weather[0].main == "Clouds") {
-            weatherIcon.src = "images/clouds.png"
-        }
-        else if(data.weather[0].main == "Rain") {
-            weatherIcon.src = "images/rain.png"
-        }
-        else if(data.weather[0].main == "Clear") {
-            weatherIcon.src = "images/clear.png"
-        }
-        else if(data.weather[0].main == "Drizzle") {
-            weatherIcon.src = "images/drizzle.png"
-        }
-        else if(data.weather[0].main == "Mist") {
-            weatherIcon.src = "images/mist.png"
-        }
-
+        const iconMap = {
+            "Clouds": "images/clouds.png",
+            "Rain": "images/rain.png",
+            "Clear": "images/clear.png",
+            "Drizzle": "images/drizzle.png",
+            "Mist": "images/mist.png"
+        };
+        
+        weatherIcon.src = iconMap[data.weather[0].main] || "images/clear.png";
         document.querySelector(".weather").style.display = "block";
 
-        const unsplashres = await fetch(`http://localhost:8080/image?city=${city}`);
+        // Fetch Image
+        const unsplashres = await fetch(`${imageApiUrl}${city}`);
         const unsplashdata = await unsplashres.json();
         
         document.body.style.backgroundImage = `url(${unsplashdata.urls.regular})`;
@@ -42,11 +38,11 @@ async function checkWeather(city){
         document.body.style.backgroundPosition = "center";
 
     } catch (error) {
-        alert("Location not found"); 
+        console.error(error);
+        alert("Location not found or API error"); 
     }
-    
 }
 
-searchBtn.addEventListener("click",()=>{
+searchBtn.addEventListener("click", () => {
     checkWeather(searchBox.value);
-})
+});
