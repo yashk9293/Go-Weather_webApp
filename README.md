@@ -62,7 +62,7 @@ Go-Weather-webapp/
     * [Unsplash Developers](https://unsplash.com/developers)
 
 ### 2. Environment Configuration
-Navigate to the `backend` folder and create a `.env` file:
+Create a `.env` file in the project root:
 
 ```env
 WEATHER_API_KEY=your_openweather_key_here
@@ -71,17 +71,19 @@ UNSPLASH_ACCESS_KEY=your_unsplash_key_here
 ```
 
 
-### 3. Running the Backend
+### 3. Running the App
 ```
-cd backend
 go mod tidy
 go run main.go
 ```
 
-The server will start at http://localhost:8080.
+The server starts at http://localhost:8080 and serves both the API and the
+frontend. Open that URL in your browser.
 
-### 4. Running the Frontend
-Simply open the index.html file in your browser or use a VS Code extension like Live Server.
+> Don't open `index.html` directly from the filesystem — the page calls
+> `/weather`, `/date` and `/image` on the Go server, so it has to be served
+> by it.
+
 
 
 
